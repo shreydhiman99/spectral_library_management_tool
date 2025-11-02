@@ -1,0 +1,76 @@
+[tool.poetry]
+name = "spectrallibrary"
+version = "0.1.0"
+description = "Offline desktop application for managing, visualizing, and exporting spectral libraries."
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "spectrallibrary", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyside6 = "^6.7.0"
+sqlalchemy = "^2.0.20"
+alembic = "^1.12.0"
+pydantic = "^2.4.0"
+numpy = "^1.26.0"
+pandas = "^2.1.0"
+pyqtgraph = "^0.13.3"
+plotly = "^5.17.0"
+duckdb = "^0.9.0"
+typer = "^0.9.0"
+sqlalchemy-utils = "^0.41.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-qt = "^4.2.0"
+coverage = "^7.3.0"
+ruff = "^0.1.4"
+black = "^23.9.1"
+mypy = "^1.6.0"
+pre-commit = "^3.4.0"
+types-pyyaml = "^6.0.12"
+
+[tool.poetry.scripts]
+spectrallibrary = "spectrallibrary.app:main"
+
+[build-system]
+requires = ["poetry-core>=1.7.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = ["E", "F", "W", "B", "I", "UP"]
+ignore = ["E501"]
+src = ["src", "tests"]
+fix = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+strict_equality = true
+exclude = ["tests/.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[tool.coverage.run]
+branch = true
+source = ["spectrallibrary"]
+
+[tool.coverage.report]
+skip_empty = true
