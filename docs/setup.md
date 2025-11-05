@@ -14,6 +14,9 @@ poetry install
 # Activate virtual environment
 poetry shell
 
+# Run database migrations
+poetry run alembic upgrade head
+
 # Run initial verification
 poetry run pytest
 ```

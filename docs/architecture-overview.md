@@ -19,6 +19,11 @@
 ## Data storage
 - SQLite with WAL mode for concurrency; FTS5 for text search tables.
 - Tables for materials, spectra, spectrum_points, tags, relationships, audit logs, plugin metadata.
+	- `materials`: `id`, `library_name`, `material_name`, `category`, `location`, `comments`, timestamps.
+	- `spectra`: `id`, `material_id`, `source` (instrument), `wavelength_unit`, `reflectance_unit`, `acquisition_date`, `quality_status`, provenance references (`source_file_id`, `plugin_id`).
+	- `spectrum_points`: `spectrum_id`, `wavelength`, `reflectance`, optional uncertainty columns; arrays imported must retain positional integrity.
+	- `source_files`: original filename, format, hash, importer metadata.
+	- Support tables: tag mappings, version history, change logs.
 - Optional DuckDB integration for heavy analytical workloads (read-only mirror of curated datasets).
 
 ## Plugin lifecycle
