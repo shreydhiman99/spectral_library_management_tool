@@ -33,6 +33,7 @@ types-pyyaml = "^6.0.12"
 
 [tool.poetry.scripts]
 spectrallibrary = "spectrallibrary.app:main"
+spectrallibrary-seed = "spectrallibrary.seed:main"
 
 [build-system]
 requires = ["poetry-core>=1.7.0"]

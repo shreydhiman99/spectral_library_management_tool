@@ -3,7 +3,7 @@
 An offline, cross-platform desktop tool for managing, visualizing, and exporting spectral libraries. The application targets laboratory and field teams who need a reliable spectral bank without relying on cloud services.
 
 ## Highlights
-- **Multi-format ingestion**: Import spectra from CSV, TXT, XLSX, and JSON files with pluggable parsers.
+- **Multi-format ingestion**: Import spectra from CSV and ASD SIG/TXT exports with pluggable parsers.
 - **Unified storage**: Normalize and persist materials and spectra in a SQLite database with provenance and version history.
 - **Powerful search & filtering**: Full-text and faceted search across materials, metadata, and spectral characteristics.
 - **Interactive visualization**: Overlay spectra, zoom, highlight peaks, and compare versions with PySide6-based UI components.
@@ -52,15 +52,69 @@ poetry shell
 # Apply the latest database migrations
 poetry run alembic upgrade head
 
+# (Optional) Load demo content for the UI preview
+poetry run spectrallibrary-seed
+
 # Run placeholder test suite
 poetry run pytest
 ```
+
+### Preview the UI shell
+```powershell
+# Ensure the virtual environment is active (via `poetry shell` or `poetry run`)
+poetry run python -m spectrallibrary.app
+```
+
+If you are running on a headless system, set `QT_QPA_PLATFORM=offscreen` before
+launching to avoid Qt display errors.
+
+The navigation tree pulls live data from the database. Running the demo seed
+command beforehand ensures the preview showcases populated libraries and
+materials.
+
+### Sample CSV for importer
+
+Use `data-samples/demo_import.csv` or `data-samples/demo_import_extended.csv`
+with the Import Wizard (or CLI) to exercise the CSV ingestion workflow. The
+extended version includes repeat measurements, lab archives, and reference
+panels to showcase deduplication and metadata overrides.
+
+Launch the import wizard and choose **Preview mapping** to inspect the parsed
+records (first ten rows) and any validation warnings before running the full
+import.
+
+After an import completes, the status panel now includes a **View imported
+records…** shortcut. It reopens the same preview dialog with the persisted
+data, so you can confirm metadata and inspect wavelength/reflectance values
+without re-running the import. Within the dialog you can copy the detailed
+summary to the clipboard or export the selected spectrum to CSV for quick
+sharing.
+
+If a file contains only invalid rows, the import still completes and surfaces
+warnings without creating new spectra, so you can fix issues and retry safely.
+
+ASD FieldSpec ASCII (`.sig` / exported `.txt`) files are also supported—choose
+them in the import dialog to normalize field spectra directly into the library.
+Sample files live under `data-samples/asd/` for quick demonstrations (reflectance
+and radiance variants).
+
+### Recent updates
+- Import preview dialog shows wavelength ranges, reflectance samples, and a
+	detailed inspector for up to ten records.
+- Completed imports surface a **View imported records…** button so analysts can
+	reopen the preview for the latest run.
+- Copy spectrum details to the clipboard or export the selected record to CSV
+	straight from the preview dialog.
+- Export all previewed records to a single CSV in one click for bulk QA or
+	re-import scenarios.
 
 ## Documentation index
 - `docs/requirements.md` – functional and non-functional requirements
 - `docs/architecture-overview.md` – layered architecture, plugin interfaces, data model
 - `docs/setup.md` – environment preparation and platform-specific notes
 - `docs/roadmap.md` – detailed milestone breakdown and acceptance criteria
+- `docs/import-mapping.md` – CSV column expectations for the importer
+- `docs/importers/asd_ascii.md` – design notes for the ASD ASCII/SIG importer
 
 ## Contributing
 1. Enable pre-commit hooks (`poetry run pre-commit install`).

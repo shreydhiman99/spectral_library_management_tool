@@ -1,0 +1,4 @@
+library_name,material_name,category,source,wavelength_unit,reflectance_unit,wavelengths,reflectance,acquisition_date,location,comments,tags
+Global Reference,Basalt-01,Igneous,ASD FieldSpec 4,nm,fraction,400;401;402,0.11;0.12;0.13,2024-03-14,Iceland,Roadcut sample,baseline;approved
+Global Reference,Basalt-01,Igneous,ASD FieldSpec 4,nm,fraction,405;406;407,0.10;0.11;0.12,2024-04-02,Iceland,Repeat measurement,
+Field Campaign 2024,Ice Core A,Cryogenic,ASD TerraSpec,nm,fraction,450;455;460,0.05;0.06;0.07,2024-02-01,Greenland,Suspected impurities,priority

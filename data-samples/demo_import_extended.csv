@@ -1,0 +1,6 @@
+library_name,material_name,category,source,wavelength_unit,reflectance_unit,wavelengths,reflectance,location,acquisition_date,tags,comments
+Field Campaign,Basalt Outcrop A,Igneous,ASD FieldSpec 4,nm,ratio,"350;351;352;353;354","0.11;0.12;0.13;0.14;0.15",Kilauea Caldera,2025-05-12,"basalt;field;daytime","Primary target captured mid-morning"
+Field Campaign,Basalt Outcrop A,Igneous,ASD FieldSpec 4,nm,ratio,"350;351;352;353;354","0.10;0.11;0.12;0.13;0.14",Kilauea Caldera,2025-05-12,"basalt;secondary","Repeat scan for consistency"
+Field Campaign,Quartz Panel Reference,Reference,ASD FieldSpec 4,nm,ratio,"350;351;352;353;354","0.98;0.99;1.00;0.99;0.98",Kilauea Base Camp,2025-05-12,"reference;calibration","White reference panel"
+Lab Archive,Olive Pyroxene,Igneous,LAB Integrating Sphere,nm,ratio,"400;410;420;430;440","0.32;0.34;0.36;0.37;0.39",Geo Lab Facility,2024-11-03,"lab;pyroxene","Curated under controlled lighting"
+Lab Archive,Red Maple Leaf,Vegetation,Contact Probe,nm,ratio,"550;560;570;580;590","0.21;0.23;0.24;0.26;0.27",Greenhouse Wing,2024-09-18,"vegetation;leaf","Healthy sample"

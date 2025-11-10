@@ -1,12 +1,18 @@
-"""Application entry point stubs for the Spectral Library desktop app."""
+"""Application entry point for the Spectral Library desktop app."""
 
 from __future__ import annotations
 
+from .ui import MainWindow, create_application
+
 
 def main() -> None:
-    """Placeholder CLI entry point until UI shell is implemented."""
-    print("Spectral Library application scaffold is ready.")
+    """Launch the PySide6 UI shell."""
+
+    app = create_application()
+    window = MainWindow()
+    window.show()
+    app.exec()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover - manual launch convenience
     main()

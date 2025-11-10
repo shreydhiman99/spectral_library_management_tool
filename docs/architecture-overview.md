@@ -26,6 +26,25 @@
 
 This workflow avoids re-reading source files, keeps previews consistent between the dialog and viewer, and gives QA teams a single click to review spectra immediately after ingestion.
 
+```mermaid
+sequenceDiagram
+	autonumber
+	actor User
+	participant ImportWizard as ImportWizardView
+	participant Service as ImportService
+	participant MainWindow
+	participant Viewer as SpectrumViewerView
+
+	User->>ImportWizard: Trigger import / preview
+	ImportWizard->>Service: import_with_result(file, context)
+	Service-->>ImportWizard: ImportResult + ImportSummary
+	ImportWizard->>MainWindow: emit import_records_ready(records)
+	MainWindow->>MainWindow: cache records & show status shortcut
+	User->>MainWindow: Click "View imported spectra"
+	MainWindow->>Viewer: show_import_preview(records)
+	Viewer-->>User: Render metadata & versions list
+```
+
 ## Spectral format strategy
 
 | Instrument / Source | Native formats | Import plan | Export plan |

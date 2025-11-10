@@ -25,10 +25,15 @@ class ImporterRegistry:
         return [imp for imp in self._importers if imp.can_handle(path)]
 
     def import_file(self, path: Path, *, context: ImportContext | None = None) -> ImportResult:
+        fallback_result: ImportResult | None = None
         for importer in self.find_for_path(path):
             result = importer.load(path, context=context)
             if result.records:
                 return result
+            if fallback_result is None:
+                fallback_result = result
+        if fallback_result is not None:
+            return fallback_result
         raise ValueError(f"No importer could handle file: {path}")
 
 
